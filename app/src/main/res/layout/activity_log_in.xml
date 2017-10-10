@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.anando.hciapp.LogInActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:text="@string/app_name"
+            android:textColor="#000"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/login_app_name"
+            android:layout_gravity="center_horizontal" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:id="@+id/login_email"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:id="@+id/login_password"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <com.dd.processbutton.iml.ActionProcessButton
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="LOGIN"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+
+
+            custom:pb_colorComplete="@android:color/holo_purple"
+
+            custom:pb_colorNormal="@android:color/holo_blue_light"
+            custom:pb_colorPressed="@android:color/holo_blue_bright"
+            />
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:id="@+id/link_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Need an account? Sign up here"
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:textSize="16dip"/>
+
+
+        <TextView
+            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/link_forgot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:textSize="14dip"/>
+
+    </LinearLayout>
+</RelativeLayout>

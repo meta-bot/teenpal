@@ -15,6 +15,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@android:color/transparent"
+            android:id="@+id/emergency_pic"
             android:src="@mipmap/ic_profile"/>
         <LinearLayout
             android:layout_width="0dp"
@@ -32,6 +33,7 @@
                 android:textColor="@color/textAshDark"
                 android:fontFamily="sans-serif-condensed"
                 android:textStyle="bold"
+                android:id="@+id/emergency_name"
                 />
             <TextView
                 android:gravity="center_horizontal"
@@ -41,12 +43,14 @@
                 android:textColor="@color/textAsh"
                 android:textStyle="bold"
                 android:textSize="14dp"
-                android:text="+880152xxxxxxx"/>
+                android:text="+880152xxxxxxx"
+                android:id="@+id/emergency_contact"/>
         </LinearLayout>
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@android:color/transparent"
-            android:src="@mipmap/ic_action_action_delete"/>
+            android:src="@mipmap/ic_action_action_delete"
+            android:id="@+id/emergency_delete"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

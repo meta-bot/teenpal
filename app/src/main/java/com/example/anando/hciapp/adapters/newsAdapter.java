@@ -7,8 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.anando.hciapp.R;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -17,8 +22,8 @@ import java.util.ArrayList;
  */
 public class newsAdapter extends RecyclerView.Adapter<newsAdapter.ViewHolder> {
     Activity activity;
-    ArrayList<String> list;
-    public newsAdapter(Activity activity , ArrayList<String>list){
+    ArrayList<newsContainer> list;
+    public newsAdapter(Activity activity , ArrayList<newsContainer>list){
         this.activity = activity;
         this.list = list;
     }
@@ -31,7 +36,11 @@ public class newsAdapter extends RecyclerView.Adapter<newsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        CardView cardView = holder.cardView;
+        ImageView iv = (ImageView)cardView.findViewById(R.id.fav_icon);
+        TextView headline = (TextView)cardView.findViewById(R.id.fav_headLine);
+        Picasso.with(activity).load(list.get(position).getImage()).into(iv);
+        headline.setText(list.get(position).getHeadLine());
     }
 
     @Override

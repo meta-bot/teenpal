@@ -40,8 +40,9 @@
             android:layout_marginTop="10dp"
             android:layout_width="100sp"
             android:layout_height="100sp"
+            android:id="@+id/send_sms"
             android:background="@drawable/roundedshape"
-            android:src="@android:drawable/sym_call_outgoing"/>
+            android:src="@android:drawable/ic_menu_send"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_marginTop="5dp"

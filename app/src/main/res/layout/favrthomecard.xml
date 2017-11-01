@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:id="@+id/fav_icon"
             android:background="@android:color/transparent"
             android:src="@mipmap/bluewhalechallenge"/>
         <TextView
@@ -23,6 +24,7 @@
             android:textSize="10dp"
             android:textColor="@color/textAsh"
             android:fontFamily="sans-serif-condensed"
+            android:id="@+id/fav_headLine"
             android:text="Blue Whale is now a new viral topic in social media...."/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -108,9 +109,11 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_emergency) {
             startActivity(new Intent(HomeActivity.this,EmergencyActivity.class));
         } else if (id == R.id.nav_fav) {
-
+            FragmentManager fm = getSupportFragmentManager();
+            FavouriteList alertdFragment = new FavouriteList();
+            alertdFragment.show(fm, "FavouriteList");
         } else if (id == R.id.nav_share) {
-
+            startActivity(new Intent(HomeActivity.this,ShareActivity.class));
         } else if (id == R.id.nav_send) {
 
         }

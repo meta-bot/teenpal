@@ -1,6 +1,7 @@
 package com.example.anando.hciapp.adapters;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import java.util.Date;
 public class activityplanAdapter extends BaseAdapter {
     Activity activity;
     ArrayList<planContainer> list;
+    boolean flag;
     public activityplanAdapter(Activity activity , ArrayList<planContainer> list){
         this.list = list;
         this.activity = activity;
@@ -47,7 +49,7 @@ public class activityplanAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         if(view == null){
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.plancard , viewGroup , false);
         }
@@ -57,14 +59,26 @@ public class activityplanAdapter extends BaseAdapter {
             logo.setImageDrawable(list.get(i).getIcon());
             name.setText(list.get(i).getName().substring(list.get(i).getName().lastIndexOf(".")+1));
             CrystalSeekbar seekbar = (CrystalSeekbar) view.findViewById(R.id.planseek);
+            seekbar.setMinStartValue(list.get(i).getTimer());
+            Log.d("PlanAdapter",list.get(i).getTimer()+"");
             final TextView timer = (TextView)view.findViewById(R.id.planTime);
             seekbar.setMaxValue(24*4);
+            flag = false;
+            seekbar.setLeft(list.get(i).getTimer());
             seekbar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
                 @Override
                 public void valueChanged(Number value) {
-                    long hours = (long)value/4;
-                    long min = (long)value%4;
-                    timer.setText(""+hours+"hour");
+                    if(flag) {
+                        long hours = (long) value / 4;
+                        long min = (long) value % 4;
+                        timer.setText("" + hours + "hour");
+                        list.get(i).setTimer((int) hours);
+                        Log.d("Changed PlanAdapter", list.get(i).getTimer() + "");
+                    }else{
+                        int hours = list.get(i).getTimer();
+                        timer.setText("" + hours + "hour");
+                    }
+                    flag = true;
                 }
             });
         }

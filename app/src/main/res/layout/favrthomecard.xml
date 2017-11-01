@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
-    android:layout_height="match_parent"
+    android:layout_width="100sp"
+    android:layout_height="100sp"
     android:layout_marginRight="10dp"
     android:layout_marginBottom="20dp"
     android:layout_marginTop="10dp">
@@ -15,7 +15,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:src="@mipmap/ic_profile"/>
+            android:src="@mipmap/bluewhalechallenge"/>
         <TextView
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
@@ -23,6 +23,6 @@
             android:textSize="10dp"
             android:textColor="@color/textAsh"
             android:fontFamily="sans-serif-condensed"
-            android:text="Roshu Kha sacrificed his life for the betterment of csedu 20th batch..."/>
+            android:text="Blue Whale is now a new viral topic in social media...."/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

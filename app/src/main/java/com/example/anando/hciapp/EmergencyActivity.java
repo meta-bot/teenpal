@@ -4,7 +4,9 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import android.widget.ListView;
 import com.example.anando.hciapp.adapters.EmergerncyAdapter;
 import com.example.anando.hciapp.adapters.emergencyContainer;
 import com.example.anando.hciapp.adapters.planContainer;
+import com.example.anando.hciapp.database.planDB;
 
 import java.util.ArrayList;
 
@@ -25,6 +28,8 @@ public class EmergencyActivity extends AppCompatActivity {
     private ListView activityList;
     private ArrayList<emergencyContainer> list;
     private EmergerncyAdapter adapter;
+    private ArrayList<emergencyContainer> contactFuture;
+    private planDB database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +39,10 @@ public class EmergencyActivity extends AppCompatActivity {
         activityList.setAdapter(adapter);
     }
     private void init(){
-        list = new ArrayList<>();
+        database = new planDB(this);
+        new ContactBring().execute();
+        list = database.getAllContact();
+
         //for(int i=0;i<15;i++)list.add("x");
         activityList = (ListView)findViewById(R.id.emergecy_list);
         adapter = new EmergerncyAdapter(this,list);
@@ -42,8 +50,8 @@ public class EmergencyActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<emergencyContainer> myList = new ArrayList<emergencyContainer>();
-                getContactList(myList);
+                ArrayList<emergencyContainer> myList = contactFuture;
+                //getContactList(myList);
                 final CharSequence[] items = new CharSequence[myList.size()];
                 for(int i=0; i< myList.size(); i++){
                     items[i]= myList.get(i).getName()+"\n"+myList.get(i).getNumber();
@@ -102,6 +110,33 @@ public class EmergencyActivity extends AppCompatActivity {
         }
         if(cur!=null){
             cur.close();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        new SyncContact().execute();
+    }
+    private class ContactBring extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            contactFuture = new ArrayList<>();
+            getContactList(contactFuture);
+            return null;
+        }
+    }
+    private class SyncContact extends AsyncTask<Void , Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            SQLiteDatabase db = database.getWritableDatabase();
+            db.delete(database.table2,null,null);
+            for(emergencyContainer ec : list){
+                database.pushContact(ec.getName(),ec.getNumber());
+            }
+            return null;
         }
     }
 }
